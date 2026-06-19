@@ -1,0 +1,16 @@
+check,result,detail
+Row count = 60 months,PASS,rows=60
+One row per month (no dup dates),PASS,unique=60
+Dates month-end Jan-2020..Dec-2024,PASS,vs expected grid
+Continuous monthly spacing (no gaps),PASS,spacing 28-31 days
+month_end_price present (except documented DSE closure),PASS,missing=['2020-04'] (Apr-2020 DSE closure)
+monthly_stock_return NaNs all explained,PASS,"missing=['2020-01', '2020-04', '2020-05'] (start month + DSE closure)"
+Missing annual_revenue,PASS,n=0
+Missing annual_total_assets,PASS,n=0
+Missing annual_eps,PASS,n=0
+Missing bd_inflation_annual_pct,PASS,n=0
+Missing bd_gdp_growth_annual_pct,PASS,n=0
+month_end_price > 0,PASS,min=223.50
+No extreme monthly returns (|r|<0.50),PASS,max|r|=0.3624
+annual_eps in plausible band (0-100),PASS,"range=[22.29,27.54]"
+Types correct (date/float/int),PASS,"date=datetime, price=float, year=int"

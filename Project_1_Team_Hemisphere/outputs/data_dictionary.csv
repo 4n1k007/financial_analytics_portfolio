@@ -1,0 +1,13 @@
+variable,Description,unit,frequency,source,notes
+company_name,Name of the selected company,text,monthly,Firm report,Constant
+ticker_or_code,DSE ticker / company code,text,monthly,Stock source,Constant: GP
+date,Month-end calendar date,YYYY-MM-DD,monthly,Derived,Last day of month
+year,Calendar year,integer,monthly,Derived,Alignment key
+month,Calendar month (1-12),integer,monthly,Derived,
+month_end_price,Last traded close of the month,BDT,monthly,Daily stock file ('Price'),NaN Apr-2020: DSE closed 26 Mar-31 May 2020
+monthly_stock_return,P_t/P_(t-1)-1 on month-end price,decimal,monthly,Derived,NaN Jan/Apr/May-2020 (start + DSE closure)
+annual_revenue,Annual revenue / net sales,million BDT,annual->monthly,GP annual report,Repeats within year
+annual_total_assets,Year-end total assets,million BDT,annual->monthly,GP annual report,
+annual_eps,Annual basic earnings per share,BDT/share,annual->monthly,GP annual report,Face value BDT 10
+bd_inflation_annual_pct,"Inflation, consumer prices",annual %,annual->monthly,World Bank FP.CPI.TOTL.ZG,Bangladesh
+bd_gdp_growth_annual_pct,GDP growth,annual %,annual->monthly,World Bank NY.GDP.MKTP.KD.ZG,Bangladesh; fiscal-year basis

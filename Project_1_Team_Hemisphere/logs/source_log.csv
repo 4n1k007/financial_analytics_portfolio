@@ -1,0 +1,5 @@
+data_component,source,saved_as,retrieved_on,notes
+Stock - daily prices,investing.com - Grameenphone Historical Data (Download Data),raw_data/stock/Grameenphone_Stock_Price_History.csv,2026-06-16,"'Price'=close; 1,163 days; no trades Apr-2020 (DSE closed 26 Mar-31 May 2020)"
+Firm - Revenue/Total Assets/EPS,Grameenphone Annual Reports 2020-2024 (audited),raw_data/firm_reports/*.pdf + gp_annual_firm_data.csv,2026-06-16,Per-year primary statements; cross-checked vs AR2024 Table-1 (p.89)
+Macro - GDP growth,"World Bank API NY.GDP.MKTP.KD.ZG (BD, 2020:2024)",raw_data/macro_api_raw/worldbank_gdp_growth_raw.json,2026-06-16,World Bank Indicators API (live call; cached raw JSON retained as offline fallback)
+Macro - Inflation CPI,"World Bank API FP.CPI.TOTL.ZG (BD, 2020:2024)",raw_data/macro_api_raw/worldbank_inflation_raw.json,2026-06-16,World Bank Indicators API (live call; cached raw JSON retained as offline fallback)

@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anik Biswas — Finance & FinTech Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:       #0d1117;
+    --ink-muted: #4a5568;
+    --paper:     #f8f6f1;
+    --cream:     #edeae3;
+    --accent:    #1a5276;
+    --accent2:   #2e86c1;
+    --green:     #1e8449;
+    --red:       #c0392b;
+    --gold:      #b7950b;
+    --rule:      #d5cfc5;
+    --mono-bg:   #1e2433;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(248,246,241,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 56px;
+  }
+  .nav-brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 80px 2.5rem 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 4rem;
+  }
+  .hero-left { padding-top: 2rem; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 1.25rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .eyebrow::before {
+    content: '';
+    display: inline-block; width: 24px; height: 1px;
+    background: var(--accent2);
+  }
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .hero-desc {
+    font-size: 1rem;
+    color: var(--ink-muted);
+    line-height: 1.75;
+    max-width: 440px;
+    margin-bottom: 2rem;
+  }
+  .badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem; }
+  .badge {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 0.3rem 0.75rem;
+    border-radius: 2px;
+    border: 1px solid var(--rule);
+    color: var(--ink-muted);
+    background: var(--cream);
+  }
+  .cta-row { display: flex; gap: 1rem; align-items: center; }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.5rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-ghost {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ─── HERO RIGHT: ticker card ─── */
+  .hero-right { display: flex; justify-content: center; }
+  .ticker-card {
+    background: var(--mono-bg);
+    border-radius: 6px;
+    padding: 1.75rem;
+    width: 100%; max-width: 380px;
+    box-shadow: 0 20px 60px rgba(13,17,23,0.18);
+    position: relative;
+    overflow: hidden;
+  }
+  .ticker-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent2), var(--green));
+  }
+  .tc-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: #6b7280;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 0.3rem;
+  }
+  .tc-ticker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #e5e7eb;
+    margin-bottom: 1rem;
+  }
+  .tc-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+    border-top: 1px solid #2d3748; padding-top: 1rem;
+  }
+  .tc-stat .key {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem; color: #6b7280;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 0.2rem;
+  }
+  .tc-stat .val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem; color: #e5e7eb; font-weight: 500;
+  }
+  .val.up { color: #34d399; }
+  .val.down { color: #f87171; }
+  .val.warn { color: #fbbf24; }
+  .tc-footer {
+    margin-top: 1rem;
+    border-top: 1px solid #2d3748; padding-top: 0.75rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .tc-footer .model-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem; color: #6b7280;
+  }
+  .signal-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #f87171;
+    box-shadow: 0 0 6px #f87171;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.35} }
+
+  /* ─── SECTION LAYOUT ─── */
+  section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2.5rem;
+  }
+  .section-header {
+    display: flex; align-items: baseline; gap: 1.25rem;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1rem; margin-bottom: 3rem;
+  }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem; color: var(--accent2);
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.9rem; color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  /* ─── PROJECTS ─── */
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem;
+  }
+  .project-card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1.75rem;
+    display: flex; flex-direction: column;
+    transition: box-shadow 0.2s, transform 0.15s;
+    position: relative; overflow: hidden;
+  }
+  .project-card:hover { box-shadow: 0 8px 30px rgba(13,17,23,0.1); transform: translateY(-2px); }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .card-p1::before { background: var(--accent2); }
+  .card-p2::before { background: var(--red); }
+  .card-p3::before { background: var(--green); }
+  .card-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem; color: var(--ink-muted);
+    letter-spacing: 0.06em; margin-bottom: 0.75rem;
+  }
+  .card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem; line-height: 1.3;
+    color: var(--ink); margin-bottom: 0.5rem;
+  }
+  .card-company {
+    font-size: 0.75rem; font-weight: 600;
+    color: var(--accent); margin-bottom: 0.75rem;
+    letter-spacing: 0.02em;
+  }
+  .card-desc {
+    font-size: 0.85rem; color: var(--ink-muted);
+    line-height: 1.6; flex: 1; margin-bottom: 1.25rem;
+  }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem; padding: 0.2rem 0.5rem;
+    background: var(--cream); color: var(--ink-muted);
+    border-radius: 2px;
+  }
+  .card-metrics {
+    border-top: 1px solid var(--rule);
+    padding-top: 1rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;
+  }
+  .metric .mk { font-size: 0.65rem; color: var(--ink-muted); margin-bottom: 0.1rem; }
+  .metric .mv {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem; font-weight: 500; color: var(--ink);
+  }
+  .mv.green { color: var(--green); }
+  .mv.red   { color: var(--red); }
+  .mv.gold  { color: var(--gold); }
+
+  /* ─── SKILLS ─── */
+  .skills-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; }
+  .skill-block { }
+  .skill-block h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--accent2); margin-bottom: 1rem;
+    padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);
+  }
+  .skill-block ul { list-style: none; }
+  .skill-block li {
+    font-size: 0.84rem; color: var(--ink-muted);
+    padding: 0.35rem 0;
+    border-bottom: 1px solid var(--cream);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .skill-block li::before {
+    content: '▸'; font-size: 0.6rem; color: var(--accent2);
+  }
+
+  /* ─── ABOUT ─── */
+  .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { font-size: 0.95rem; color: var(--ink-muted); line-height: 1.8; margin-bottom: 1rem; }
+  .about-text p:last-child { margin-bottom: 0; }
+  .about-text strong { color: var(--ink); }
+  .about-sidebar {}
+  .info-block { margin-bottom: 2rem; }
+  .info-block .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem; color: var(--ink-muted);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 0.35rem;
+  }
+  .info-block .value {
+    font-size: 0.88rem; color: var(--ink); font-weight: 500;
+  }
+
+  /* ─── CONTACT ─── */
+  .contact-section {
+    background: var(--mono-bg);
+    padding: 4rem 2.5rem;
+    text-align: center;
+  }
+  .contact-section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem; color: #e5e7eb; margin-bottom: 0.75rem;
+  }
+  .contact-section p { color: #6b7280; font-size: 0.9rem; margin-bottom: 2rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; }
+  .contact-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; letter-spacing: 0.06em;
+    padding: 0.6rem 1.25rem;
+    border: 1px solid #2d3748; color: #e5e7eb;
+    text-decoration: none; border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent2); color: var(--accent2); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--mono-bg);
+    border-top: 1px solid #1a2035;
+    padding: 1.5rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 100%;
+  }
+  .foot-left {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem; color: #4b5563;
+  }
+  .foot-right {
+    font-size: 0.72rem; color: #4b5563;
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    border: none; border-top: 1px solid var(--rule);
+    margin: 0 2.5rem;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: 2.5rem; min-height: auto; padding-top: 96px; }
+    .hero-right { display: none; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── CHARTS ─── */
+  .charts-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+  .chart-card { background: #fff; border: 1px solid var(--rule); border-radius: 4px; padding: 1.5rem; }
+  .chart-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem; }
+  .chart-title { font-family: 'DM Serif Display', serif; font-size: 1rem; color: var(--ink); margin-bottom: 0.2rem; }
+  .chart-sub { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--ink-muted); letter-spacing: 0.04em; }
+  .chart-badge { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 2px; white-space: nowrap; }
+  .badge-blue  { background: #dbeafe; color: #1e40af; }
+  .badge-red   { background: #fee2e2; color: #991b1b; }
+  .badge-green { background: #dcfce7; color: #166534; }
+  .chart-legend { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.75rem; }
+  .leg-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.7rem; color: var(--ink-muted); }
+  .leg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  canvas { width: 100% !important; }
+  @media (max-width: 900px) { .charts-grid { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) { .signal-dot { animation: none; } * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">Anik Biswas</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#charts">Charts</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">UIU · Finance & FinTech</div>
+    <h1>Quantitative<br>Finance <em>&amp;<br>Analytics</em></h1>
+    <p class="hero-desc">
+      A three-project portfolio (FIN 4333 Financial Analytics · Team Hemisphere) applying
+      Python-based quantitative methods to real equity and macroeconomic data —
+      from dataset construction to volatility modelling to return forecasting.
+    </p>
+    <div class="badges">
+      <span class="badge">ARIMA / GARCH</span>
+      <span class="badge">LSTM</span>
+      <span class="badge">Python</span>
+      <span class="badge">Financial Modeling</span>
+      <span class="badge">DSE Markets</span>
+      <span class="badge">FinTech</span>
+    </div>
+    <div class="cta-row">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-ghost">Get in touch →</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="ticker-card">
+      <div class="tc-label">Live Risk Dashboard · TGT</div>
+      <div class="tc-ticker">Target Corp <span style="color:#34d399;font-size:0.9rem">ARIMA(1,0,3)</span></div>
+      <div class="tc-grid">
+        <div class="tc-stat">
+          <div class="key">T+1 Vol</div>
+          <div class="val up">1.74%</div>
+        </div>
+        <div class="tc-stat">
+          <div class="key">T+5 Vol</div>
+          <div class="val warn">1.95%</div>
+        </div>
+        <div class="tc-stat">
+          <div class="key">30-Day Return</div>
+          <div class="val up">+0.41%</div>
+        </div>
+        <div class="tc-stat">
+          <div class="key">ARIMA RMSE</div>
+          <div class="val" style="color:#e5e7eb">0.0257</div>
+        </div>
+        <div class="tc-stat">
+          <div class="key">Dir. Accuracy</div>
+          <div class="val up">54.7%</div>
+        </div>
+        <div class="tc-stat">
+          <div class="key">Kurtosis</div>
+          <div class="val down">36.51</div>
+        </div>
+      </div>
+      <div class="tc-footer">
+        <span class="model-name">GARCH(1,1)-t · α+β = 0.8444</span>
+        <div class="signal-dot" title="Risk alert active"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <span class="section-label">// Projects</span>
+    <h2>FIN 4333 Financial Analytics Portfolio</h2>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- PROJECT 1 -->
+    <div class="project-card card-p1">
+      <div class="card-num">PROJECT 01 · FIN 4333 · DATASET CONSTRUCTION</div>
+      <div class="card-title">Monthly Analytics-Ready Dataset Construction</div>
+      <div class="card-company">Grameenphone Ltd. (DSE: GP) · Jan 2020 – Dec 2024</div>
+      <p class="card-desc">
+        Built a clean, reproducible monthly financial dataset by combining three sources: daily stock prices
+        (transformed to month-end closes &amp; returns), annual firm fundamentals from official company
+        reports (revenue, total assets, EPS), and Bangladesh macro indicators via the World Bank API
+        (inflation, GDP growth). Applied a year-based alignment rule and ran 7-step quality checks
+        covering missing values, duplicates, date consistency, data types, and suspicious values.
+      </p>
+      <div class="card-tags">
+        <span class="tag">Python</span>
+        <span class="tag">pandas</span>
+        <span class="tag">requests</span>
+        <span class="tag">World Bank API</span>
+        <span class="tag">Jupyter Notebook</span>
+        <span class="tag">Data Pipeline</span>
+      </div>
+      <div class="card-metrics">
+        <div class="metric">
+          <div class="mk">Period</div>
+          <div class="mv green">60 months</div>
+        </div>
+        <div class="metric">
+          <div class="mk">Quality Checks</div>
+          <div class="mv green">15 / 15 PASS</div>
+        </div>
+        <div class="metric">
+          <div class="mk">Data Sources</div>
+          <div class="mv">3 merged</div>
+        </div>
+        <div class="metric">
+          <div class="mk">Variables</div>
+          <div class="mv">12 columns</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project-card card-p2">
+      <div class="card-num">PROJECT 02 · FIN 4333 · GARCH VOLATILITY FORECASTING</div>
+      <div class="card-title">GARCH Volatility Forecasting &amp; Risk Memo</div>
+      <div class="card-company">Target Corporation (NYSE: TGT) · 2020–2025</div>
+      <p class="card-desc">
+        Estimated a GARCH(1,1) model on daily TGT log-returns to quantify market risk and produce a
+        5-day conditional volatility forecast for an investment committee. ADF confirmed stationarity
+        (p &lt; 0.01). Exhaustive AIC grid search across 72 ARIMA(p,d,q) permutations selected
+        ARIMA(0,0,0) — pure random walk. Extreme non-normality (kurtosis 36.51, skewness −2.19)
+        required a heavy-tailed Student's t distribution. Persistence α₁+β₁ = 0.8444 with a
+        ~4.1-day shock half-life. Issued investment committee memo recommending delta-neutral hedging,
+        long gamma/vega positioning, and 25% position de-leveraging.
+      </p>
+      <div class="card-tags">
+        <span class="tag">GARCH(1,1)-t</span>
+        <span class="tag">ARIMA(0,0,0)</span>
+        <span class="tag">arch</span>
+        <span class="tag">statsmodels</span>
+        <span class="tag">ADF Test</span>
+        <span class="tag">scipy</span>
+        <span class="tag">matplotlib</span>
+      </div>
+      <div class="card-metrics">
+        <div class="metric">
+          <div class="mk">5-Day Cum. Vol</div>
+          <div class="mv red">4.15%</div>
+        </div>
+        <div class="metric">
+          <div class="mk">Persistence α+β</div>
+          <div class="mv red">0.8444</div>
+        </div>
+        <div class="metric">
+          <div class="mk">Excess Kurtosis</div>
+          <div class="mv red">36.51</div>
+        </div>
+        <div class="metric">
+          <div class="mk">Shock Half-life</div>
+          <div class="mv gold">~4.1 days</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="project-card card-p3">
+      <div class="card-num">PROJECT 03 · FIN 4333 · RETURN FORECASTING</div>
+      <div class="card-title">ARIMA vs LSTM Return Forecasting</div>
+      <div class="card-company">Target Corporation (NYSE: TGT) · 2020–2024</div>
+      <p class="card-desc">
+        Forecast daily TGT log-returns using two competing models — classical ARIMA (AIC grid search +
+        Ljung-Box diagnostics) vs. deep-learning LSTM (10-day sliding window, 50 units, validation
+        loss monitoring). Strict chronological train/validation/test split (879/188/190 days) with
+        no data leakage. Primary metric: test RMSE. ARIMA(1,0,3) recommended — matched LSTM on
+        accuracy (RMSE delta &lt;1.2%), outperformed on directional accuracy (54.7% vs 45.8%),
+        and is simpler, faster, and easier to audit for a non-technical investment committee.
+        Includes 30-trading-day return outlook (+0.41%) and full AI appendix.
+      </p>
+      <div class="card-tags">
+        <span class="tag">ARIMA(1,0,3)</span>
+        <span class="tag">LSTM (50 units)</span>
+        <span class="tag">TensorFlow / Keras</span>
+        <span class="tag">statsmodels</span>
+        <span class="tag">scikit-learn</span>
+        <span class="tag">Plotly</span>
+        <span class="tag">yfinance</span>
+      </div>
+      <div class="card-metrics">
+        <div class="metric">
+          <div class="mk">ARIMA RMSE</div>
+          <div class="mv green">0.0257</div>
+        </div>
+        <div class="metric">
+          <div class="mk">LSTM RMSE</div>
+          <div class="mv">0.0254</div>
+        </div>
+        <div class="metric">
+          <div class="mk">ARIMA Dir. Acc.</div>
+          <div class="mv green">54.7%</div>
+        </div>
+        <div class="metric">
+          <div class="mk">30-Day Outlook</div>
+          <div class="mv green">+0.41%</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CHARTS -->
+<section id="charts">
+  <div class="section-header">
+    <span class="section-label">// Visualizations</span>
+    <h2>Project Data at a Glance</h2>
+  </div>
+  <div class="charts-grid">
+
+    <!-- Chart 1: GP Revenue & EPS -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Grameenphone Revenue &amp; EPS</div>
+          <div class="chart-sub">2020–2024 · Annual · DSE: GP</div>
+        </div>
+        <div class="chart-badge badge-blue">Project 01</div>
+      </div>
+      <canvas id="gpChart" height="200"></canvas>
+      <div class="chart-legend">
+        <span class="leg-item"><span class="leg-dot" style="background:#2e86c1"></span>Revenue (mn BDT)</span>
+        <span class="leg-item"><span class="leg-dot" style="background:#f59e0b"></span>EPS (BDT) ×1000</span>
+      </div>
+    </div>
+
+    <!-- Chart 2: TGT 5-Day Volatility Forecast -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">TGT Volatility Forecast</div>
+          <div class="chart-sub">GARCH(1,1)-t · 5-Day Ahead · NYSE: TGT</div>
+        </div>
+        <div class="chart-badge badge-red">Project 02</div>
+      </div>
+      <canvas id="volChart" height="200"></canvas>
+      <div class="chart-legend">
+        <span class="leg-item"><span class="leg-dot" style="background:#f87171"></span>Daily Vol (%)</span>
+        <span class="leg-item"><span class="leg-dot" style="background:#fbbf24"></span>Long-run baseline 2.14%</span>
+      </div>
+    </div>
+
+    <!-- Chart 3: ARIMA vs LSTM -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">ARIMA vs LSTM Performance</div>
+          <div class="chart-sub">Out-of-Sample Test Window · NYSE: TGT</div>
+        </div>
+        <div class="chart-badge badge-green">Project 03</div>
+      </div>
+      <canvas id="modelChart" height="200"></canvas>
+      <div class="chart-legend">
+        <span class="leg-item"><span class="leg-dot" style="background:#2e86c1"></span>ARIMA(1,0,3)</span>
+        <span class="leg-item"><span class="leg-dot" style="background:#a78bfa"></span>LSTM</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-label">// Skills</span>
+    <h2>Technical Competencies</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-block">
+      <h3>Statistical Modelling</h3>
+      <ul>
+        <li>ARIMA (AIC grid search, Ljung-Box)</li>
+        <li>GARCH(1,1) · Student's t variance</li>
+        <li>ADF stationarity testing</li>
+        <li>Jarque-Bera normality test</li>
+        <li>Time-series forecasting</li>
+      </ul>
+    </div>
+    <div class="skill-block">
+      <h3>Machine Learning</h3>
+      <ul>
+        <li>LSTM (TensorFlow / Keras)</li>
+        <li>Sliding-window sequence design</li>
+        <li>scikit-learn (MinMaxScaler, metrics)</li>
+        <li>Train / validation / test splitting</li>
+        <li>Out-of-sample evaluation</li>
+      </ul>
+    </div>
+    <div class="skill-block">
+      <h3>Data Handling</h3>
+      <ul>
+        <li>Python · pandas · NumPy</li>
+        <li>World Bank Indicators API (requests)</li>
+        <li>yfinance (split/dividend-adjusted)</li>
+        <li>Data pipeline construction</li>
+        <li>Automated quality checks</li>
+      </ul>
+    </div>
+    <div class="skill-block">
+      <h3>Visualisation &amp; Tools</h3>
+      <ul>
+        <li>matplotlib · Plotly (interactive HTML)</li>
+        <li>Jupyter Notebook (reproducible)</li>
+        <li>GitHub · Markdown documentation</li>
+        <li>Excel (source logs)</li>
+        <li>Word / PDF (investment memos)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-label">// About</span>
+    <h2>Background</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I am <strong>Anik Biswas</strong>, a Finance & FinTech major at <strong>United International University (UIU)</strong>
+        in Dhaka, Bangladesh, currently serving as an <strong>Undergraduate Teaching Assistant</strong>.
+        My academic focus sits at the intersection of quantitative finance, financial analytics, and emerging FinTech.
+      </p>
+      <p>
+        My project work (FIN 4333 Financial Analytics, <strong>Team Hemisphere</strong>) spans the full
+        quantitative pipeline — from raw data ingestion and cleaning, through statistical modelling,
+        to actionable risk recommendations presented to investment committees.
+        I have applied this pipeline to both <strong>DSE-listed equities</strong> (Grameenphone) and
+        <strong>NYSE-listed stocks</strong> (Target Corporation), building familiarity with both
+        frontier and developed market dynamics.
+      </p>
+      <p>
+        Every model I build is designed to be fully reproducible and auditable —
+        fixed seeds, documented data sources, automated validation checks, and a
+        detailed AI disclosure appendix. Instructor: <strong>Prof. Md Mohan Uddin, PhD</strong>.
+      </p>
+      <p>
+        Aspiring to grow as a <strong>Financial Analyst</strong> where I can combine analytical depth
+        with real-world investment decision support.
+      </p>
+    </div>
+    <div class="about-sidebar">
+      <div class="info-block">
+        <div class="label">Institution</div>
+        <div class="value">United International University (UIU)</div>
+      </div>
+      <div class="info-block">
+        <div class="label">Major</div>
+        <div class="value">Finance & FinTech</div>
+      </div>
+      <div class="info-block">
+        <div class="label">Role</div>
+        <div class="value">Undergraduate Teaching Assistant</div>
+      </div>
+      <div class="info-block">
+        <div class="label">Markets</div>
+        <div class="value">DSE (Bangladesh) · NYSE (US)</div>
+      </div>
+      <div class="info-block">
+        <div class="label">Team</div>
+        <div class="value">Team Hemisphere · FIN 4333</div>
+      </div>
+      <div class="info-block">
+        <div class="label">Instructor</div>
+        <div class="value">Prof. Md Mohan Uddin, PhD</div>
+      </div>
+      <div class="info-block">
+        <div class="label">Location</div>
+        <div class="value">Dhaka, Bangladesh</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <h2>Let's Connect</h2>
+  <p>Open to research collaborations, internship opportunities, and financial analytics discussions.</p>
+  <div class="contact-links">
+    <a href="https://github.com/4n1k007" target="_blank" class="contact-link">⟨/⟩ GitHub</a>
+    <a href="https://www.linkedin.com/in/abiswasuiu/" target="_blank" class="contact-link">in LinkedIn</a>
+    <a href="mailto:abiswas2310170@bba.uiu.ac.bd" class="contact-link">✉ Email</a>
+    <a href="https://uiu.ac.bd" class="contact-link">🎓 UIU</a>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-left">© 2026 Anik Biswas · Finance & FinTech · UIU</div>
+  <div class="foot-right">Built for GitHub Portfolio</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+  Chart.defaults.font.family = "'Inter', sans-serif";
+  Chart.defaults.color = '#4a5568';
+
+  // ── Chart 1: GP Revenue & EPS ──
+  new Chart(document.getElementById('gpChart'), {
+    type: 'bar',
+    data: {
+      labels: ['2020','2021','2022','2023','2024'],
+      datasets: [
+        {
+          label: 'Revenue (mn BDT)',
+          data: [139606, 143066, 150403, 158716, 158447],
+          backgroundColor: 'rgba(46,134,193,0.8)',
+          borderColor: '#2e86c1',
+          borderWidth: 1,
+          borderRadius: 2,
+          yAxisID: 'y'
+        },
+        {
+          label: 'EPS ×1000',
+          data: [27540, 25280, 22290, 24490, 26890],
+          backgroundColor: 'rgba(245,158,11,0.75)',
+          borderColor: '#f59e0b',
+          borderWidth: 1,
+          borderRadius: 2,
+          yAxisID: 'y'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false }, tooltip: {
+        callbacks: {
+          label: ctx => ctx.datasetIndex === 0
+            ? ` Revenue: ${ctx.parsed.y.toLocaleString()} mn BDT`
+            : ` EPS: ${(ctx.parsed.y/1000).toFixed(2)} BDT`
+        }
+      }},
+      scales: {
+        y: { grid: { color: '#f0ece4' }, ticks: { font: { size: 10 }, callback: v => (v/1000)+'k' } },
+        x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+      }
+    }
+  });
+
+  // ── Chart 2: TGT 5-Day Volatility Forecast ──
+  const volCtx = document.getElementById('volChart');
+  new Chart(volCtx, {
+    type: 'line',
+    data: {
+      labels: ['T+1','T+2','T+3','T+4','T+5'],
+      datasets: [
+        {
+          label: 'Daily Vol (%)',
+          data: [1.7399, 1.8082, 1.8640, 1.9098, 1.9476],
+          borderColor: '#f87171',
+          backgroundColor: 'rgba(248,113,113,0.12)',
+          borderWidth: 2.5,
+          pointBackgroundColor: '#f87171',
+          pointRadius: 5,
+          fill: true,
+          tension: 0.35
+        },
+        {
+          label: 'Long-run baseline',
+          data: [2.1413, 2.1413, 2.1413, 2.1413, 2.1413],
+          borderColor: '#fbbf24',
+          borderWidth: 1.5,
+          borderDash: [5,4],
+          pointRadius: 0,
+          fill: false
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false }, tooltip: {
+        callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(4)}%` }
+      }},
+      scales: {
+        y: {
+          min: 1.6, max: 2.3,
+          grid: { color: '#f0ece4' },
+          ticks: { font: { size: 10 }, callback: v => v.toFixed(2)+'%' }
+        },
+        x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+      }
+    }
+  });
+
+  // ── Chart 3: ARIMA vs LSTM ──
+  new Chart(document.getElementById('modelChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Test MAE', 'Test RMSE', 'Dir. Accuracy (%)'],
+      datasets: [
+        {
+          label: 'ARIMA(1,0,3)',
+          data: [0.0145, 0.0257, 54.7],
+          backgroundColor: 'rgba(46,134,193,0.8)',
+          borderColor: '#2e86c1',
+          borderWidth: 1,
+          borderRadius: 2
+        },
+        {
+          label: 'LSTM',
+          data: [0.0144, 0.0254, 45.8],
+          backgroundColor: 'rgba(167,139,250,0.75)',
+          borderColor: '#a78bfa',
+          borderWidth: 1,
+          borderRadius: 2
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false }, tooltip: {
+        callbacks: {
+          label: ctx => {
+            const v = ctx.parsed.y;
+            return ctx.dataIndex === 2 ? ` ${ctx.dataset.label}: ${v}%` : ` ${ctx.dataset.label}: ${v.toFixed(4)}`;
+          }
+        }
+      }},
+      scales: {
+        y: { grid: { color: '#f0ece4' }, ticks: { font: { size: 10 } } },
+        x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+      }
+    }
+  });
+</script>
+</body>
+</html>

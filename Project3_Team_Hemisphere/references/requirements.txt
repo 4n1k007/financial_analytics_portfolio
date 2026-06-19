@@ -1,0 +1,12 @@
+# FIN 4333 Project 3 — run on Python 3.10–3.13 (3.12 recommended).
+# TensorFlow has NO wheels for Python 3.14, which is why the LSTM import fails there.
+tensorflow==2.21.0      # use tensorflow-cpu==2.21.0 if you don't need GPU
+yfinance>=0.2.40
+pandas>=2.1
+numpy>=1.26
+matplotlib>=3.8
+statsmodels>=0.14
+scikit-learn>=1.4
+plotly>=5.20
+jupyter
+ipykernel

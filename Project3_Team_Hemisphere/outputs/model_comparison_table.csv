@@ -1,0 +1,3 @@
+Model,Forecast_target,Test_MAE,Test_RMSE,Directional_accuracy_%
+"ARIMA(1, 0, 3)",Daily log return,0.014457,0.025713,54.74
+LSTM (10→50→1),Daily log return,0.014436,0.025411,45.79

@@ -1,0 +1,5 @@
+source,item,detail,access_date,notes
+yfinance (Yahoo Finance),TGT daily prices,"Ticker TGT, 2020-01-01 to 2025-01-01, auto_adjust=True",FILL_ON_RUN,Same source/range as Project 2
+statsmodels,ARIMA,statsmodels.tsa.arima.model.ARIMA,FILL_ON_RUN,AIC grid + validation RMSE selection
+TensorFlow/Keras,LSTM,Sequential LSTM(50)+Dense(1),FILL_ON_RUN,Window=10; train-only scaling
+scikit-learn,StandardScaler,fit on training returns only,FILL_ON_RUN,Prevents leakage
