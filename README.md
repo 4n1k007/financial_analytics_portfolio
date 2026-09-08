@@ -223,7 +223,7 @@ AI tools (including large language models) were used at various stages of this p
 
 A published online portfolio presenting all three projects — including visuals, memos, and model outputs — is available at:
 
-> 🔗 **[Insert portfolio link here]**
+> 🔗https://4n1k007.github.io/financial_analytics_portfolio/
 
 ---
 
